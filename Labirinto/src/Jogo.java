@@ -32,7 +32,7 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 
 	public static final boolean TRACE = false;
 
-	public static final String WINDOW_TITLE = "COMP 3490 Assignment 5: [Zhao Han]";
+	public static final String WINDOW_TITLE = "Labirinto Evil Macabro";
 	public static final int INITIAL_WIDTH = 900, INITIAL_HEIGHT = INITIAL_WIDTH / 16 * 10;
 
 	private static final GLU glu = new GLU();
@@ -43,7 +43,7 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
 				if (TRACE)
-					System.out.println("closing window '" + ((JFrame)e.getWindow()).getTitle() + "'");
+					System.out.println("fechando janela '" + ((JFrame)e.getWindow()).getTitle() + "'");
 				System.exit(0);
 			}
 		});
@@ -53,7 +53,7 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 		final GLCanvas canvas = new GLCanvas(capabilities);
 		try {
 			Object self = self().getConstructor().newInstance();
-			self.getClass().getMethod("setup", new Class[] { GLCanvas.class }).invoke(self, canvas);
+			self.getClass().getMethod("configurar", new Class[] { GLCanvas.class }).invoke(self, canvas);
 			canvas.addGLEventListener((GLEventListener)self);
 			canvas.addKeyListener((KeyListener)self);
 		} catch (Exception e) {
@@ -85,10 +85,10 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 	private float currRotationAngle, offsetRotationAngle;
 	private float xAtual, zAtual;
 
-	public void setup(final GLCanvas canvas) {
+	public void configurar(final GLCanvas canvas) {
 		// Chamada para a configuração
 		if (TRACE)
-			System.out.println("-> executing setup()");
+			System.out.println("-> executanco configuracao()");
 
 		setTimer(canvas);
 

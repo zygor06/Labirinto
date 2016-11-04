@@ -23,7 +23,7 @@ public class Texturas {
 	
 	private static Texture[] textures = null;
 	
-	public static final String[] ARQUIVOS_TEXTURA = { "gravel.jpg", "brick.jpg", "wood.jpg", "marble.jpg", "wallpaper.jpg" };
+	public static final String[] ARQUIVOS_TEXTURA = { "gravel.jpg", "brick1.jpg", "wood.jpg", "marble.jpg", "wallpaper.jpg" };
 	public static final int[] REPETICAO_TEXTURA = { 1, 1, 1, 1, 5 };
 
 	public static void init(final GL2 gl) {

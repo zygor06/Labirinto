@@ -14,30 +14,43 @@ import formato.face.util.Vertex3D;
  */
 public class Poligono extends Face {
 
-	public Poligono(Color color, Vertex3D...vertices) {
+	public Poligono(Color color, Vertex3D... vertices) {
 		super(color, vertices);
 	}
 
 	public Poligono() {
 		super();
 	}
-	
+
 	@Override
 	public void draw(GL2 gl) {
+
+		float[] luzAmbiente = { 1.0f, 2.1f, 2.5f, 3.0f };
+		float[] luzDifusa = { 1.0f, 0.8f, 0.8f, 1.0f };
+		float[] posicaoLuz = { 30.0f, 30.0f, 0.0f, 1.0f };
+
 		gl.glEnable(GL2.GL_POLYGON_OFFSET_FILL);
 		gl.glPolygonOffset(1.0f, 1.0f);
 		setColor3f(gl);
+
+		
+
 		glBeginEndBlockWithTexture(gl, GL2.GL_POLYGON);
+		gl.glEnable(GL2.GL_LIGHTING);
+		gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, luzAmbiente, 2);
+		//gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_DIFFUSE, luzDifusa , 2);
+		//gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_POSITION, posicaoLuz, 2 );
+		gl.glEnable(GL2.GL_COLOR_MATERIAL);
 		gl.glDisable(GL2.GL_POLYGON_OFFSET_FILL);
 	}
 
 	public void drawLinha(GL2 gl, Color color) {
 		gl.glDisable(GL2.GL_TEXTURE_2D);
 		gl.glPolygonMode(GL2.GL_FRONT_AND_BACK, GL2.GL_LINE);
-		
+
 		color.setGlColor3f(gl);
 		glBeginEndBlock(gl, GL2.GL_POLYGON);
-		
+
 		gl.glPolygonMode(GL2.GL_FRONT_AND_BACK, GL2.GL_FILL);
 		gl.glEnable(GL2.GL_TEXTURE_2D);
 	}
