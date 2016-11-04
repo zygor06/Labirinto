@@ -12,24 +12,18 @@ import formato.face.util.Vertex3D;
 import labirinto.Texturas;
 
 /**
- * Floor
+ * Chao * 
  * 
- * is one kind of component in the maze.
- * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
+ * É um tipo de componente no labirinto
  * 
  */
 public class Chao implements ComponenteLabirinto {
 
-	private Poligono _bottomSquareSurface;
+	private Poligono _superficieQuadradaInferior;
 	
 	public Chao(Vertex3D bottomLeftVertex) {
-		_bottomSquareSurface = new Poligono();
-		_bottomSquareSurface.setColor(Cubo.FILL_COLOR);
+		_superficieQuadradaInferior = new Poligono();
+		_superficieQuadradaInferior.setColor(Cubo.FILL_COLOR);
 		setUpVertices(bottomLeftVertex);
 	}
 	
@@ -37,10 +31,10 @@ public class Chao implements ComponenteLabirinto {
 		float ox = bottomLeftVertex.x(), oy = bottomLeftVertex.y(), oz = bottomLeftVertex.z();
 		int width = Cubo.WIDTH;
 		
-		_bottomSquareSurface.addVertex(bottomLeftVertex);
-		_bottomSquareSurface.addVertex(ox + width, oy, oz);
-		_bottomSquareSurface.addVertex(ox + width, oy, oz - width);
-		_bottomSquareSurface.addVertex(ox, oy, oz - width);
+		_superficieQuadradaInferior.addVertex(bottomLeftVertex);
+		_superficieQuadradaInferior.addVertex(ox + width, oy, oz);
+		_superficieQuadradaInferior.addVertex(ox + width, oy, oz - width);
+		_superficieQuadradaInferior.addVertex(ox, oy, oz - width);
 	}
 	
 	public void draw(GL2 gl) {
@@ -48,8 +42,8 @@ public class Chao implements ComponenteLabirinto {
 		texture.enable(gl);
 		texture.bind(gl);
 		
-		_bottomSquareSurface.draw(gl);
-		_bottomSquareSurface.drawOutline(gl, Color.WHITE);
+		_superficieQuadradaInferior.draw(gl);
+		_superficieQuadradaInferior.drawLinha(gl, Color.WHITE);
 		
 		texture.disable(gl);
 	}

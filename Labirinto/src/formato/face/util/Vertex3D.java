@@ -2,18 +2,7 @@ package formato.face.util;
 
 import com.jogamp.opengl.GL2;
 
-/**
- * Vertex3D
- *
- * encapsulates 1. vertex(in 3D) data read from the .obj file and related operations
- * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
- * 
- */
+
 public class Vertex3D {
 
 	public static final Vertex3D ORIGIN = new Vertex3D(0, 0, 0);
@@ -49,22 +38,22 @@ public class Vertex3D {
 		gl.glVertex3f(_x, _y, _z);
 	}
 
-	public Vertex3D moveX(float value) {
+	public Vertex3D moverX(float value) {
 		_x += value;
 		return this;
 	}
 
-	public Vertex3D moveY(float value) {
+	public Vertex3D moverY(float value) {
 		_y += value;
 		return this;
 	}
 
-	public Vertex3D moveZ(float value) {
+	public Vertex3D moverZ(float value) {
 		_z += value;
 		return this;
 	}
 
-	public Vertex3D deepCopy() {
+	public Vertex3D copia() {
 		return new Vertex3D(_x, _y, _z);
 	}
 }

@@ -22,17 +22,10 @@ import labirinto.Texturas;
 import util.MyGlToolkit;
 
 /**
- * HanZhaoA5
  * 
- * An OpenGL program that will allow you to walk through a 2-dimensional maze with
- *  a 3-dimensional first-person view. That is, the viewpoint moves through 
- *  the open areas of the maze.
+ * Labirinto
  * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
+ * Um jogo em OpenGL que irá permitir que você ande por um labirinto bidimensional em primeira pessoa. * 
  * 
  */
 public class Jogo extends KeyAdapter implements GLEventListener {
@@ -76,38 +69,37 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 		canvas.requestFocusInWindow();
 
 		if (TRACE)
-			System.out.println("-> end of main().");
+			System.out.println("-> fim do main().");
 	}
 
 	private static Class<?> self() {
-		// This ugly hack gives us the containing class of a static method 
 		return new Object() { }.getClass().getEnclosingClass();
 	}
 
-	/*** Instance variables and methods ***/
+	/*** Instancia de variáveis e métodos ***/
 
-	private Labirinto maze;
+	private Labirinto labirinto;
 	
-	private float ar; // aspect ratio
+	private float formatoTela; // formato da tela
 
 	private float currRotationAngle, offsetRotationAngle;
-	private float currX, currZ;
+	private float xAtual, zAtual;
 
 	public void setup(final GLCanvas canvas) {
-		// Called for one-time setup
+		// Chamada para a configuração
 		if (TRACE)
 			System.out.println("-> executing setup()");
 
 		setTimer(canvas);
 
-		maze = new Labirinto("sample_maze.txt");
-		System.out.println(maze);
+		labirinto = new Labirinto("sample_maze.txt");
+		System.out.println(labirinto);
 		
-		currRotationAngle = 90 * maze.getOrientation();
+		currRotationAngle = 90 * labirinto.getOrientacao();
 		offsetRotationAngle = 0;
 		
-		currX = maze.currEyeX();
-		currZ = maze.currEyeZ();
+		xAtual = labirinto.currEyeX();
+		zAtual = labirinto.currEyeZ();
 	}
 	
 	private void setTimer(final GLCanvas canvas) {
@@ -137,34 +129,34 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 			}
 			
 			private void checkAdjustX() {
-				float destX = maze.currEyeX();
+				float destX = labirinto.currEyeX();
 
-				if (Math.abs(destX - currX) < 0.01 && Math.abs(destX - currX) > 0) {
-					// solve float precision problem
+				if (Math.abs(destX - xAtual) < 0.01 && Math.abs(destX - xAtual) > 0) {
+					// Resolvendo o problema de precisão
 					return;
 				}
 				
-				if (currX < destX) {
-					currX += OFFSET;
+				if (xAtual < destX) {
+					xAtual += OFFSET;
 				}
-				else if (currX > destX) {
-					currX -= OFFSET;
+				else if (xAtual > destX) {
+					xAtual -= OFFSET;
 				}
 			}
 
 			private void checkAdjustZ() {
-				float destZ = maze.currEyeZ();
+				float destZ = labirinto.currEyeZ();
 				
-				if (Math.abs(destZ - currZ) < 0.01 && Math.abs(destZ - currZ) > 0) {
-					// solve float precision problem
+				if (Math.abs(destZ - zAtual) < 0.01 && Math.abs(destZ - zAtual) > 0) {
+					// Resolvendo o problema de precisão com float
 					return;
 				}
 				
-				if (currZ < destZ) {
-					currZ += OFFSET;
+				if (zAtual < destZ) {
+					zAtual += OFFSET;
 				}
-				else if (currZ > destZ) {
-					currZ -= OFFSET;
+				else if (zAtual > destZ) {
+					zAtual -= OFFSET;
 				}
 			}
 
@@ -173,7 +165,7 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 	
 	@Override
 	public void init(GLAutoDrawable drawable) {
-		// Called when the canvas is (re-)created - use it for initial GL setup
+		// Chamada quando o canvas é recriado - usado para a configuracao do GL
 		if (TRACE)
 			System.out.println("-> executing init()");
 
@@ -185,14 +177,14 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 		
 		MyGlToolkit.lineSmooth(gl);
 		
-		gl.glEnable(GL2.GL_CULL_FACE); // enable backface culling
+		gl.glEnable(GL2.GL_CULL_FACE); 
 
 		Texturas.init(gl);
 	}
 
 	@Override
 	public void display(GLAutoDrawable drawable) {
-		// Draws the display
+		// Desenhando a tela
 		if (TRACE)
 			System.out.println("-> executing display()");
 
@@ -208,11 +200,9 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 
 	private void _draw(final GL2 gl) {
 		gl.glEnable(GL2.GL_TEXTURE_2D);
-		maze.draw(gl);
+		labirinto.draw(gl);
 		gl.glDisable(GL2.GL_TEXTURE_2D);
-		
-//		MyGlToolkit.drawPositiveAxes(gl);
-		
+				
 		gl.glFlush();
 	}
 
@@ -220,11 +210,11 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 		gl.glMatrixMode(GL2.GL_PROJECTION);
 		gl.glLoadIdentity();
 		
-		if (maze.isTopView() ) {
-			glu.gluPerspective(75, ar, 1, 100);
+		if (labirinto.isTopView() ) {
+			glu.gluPerspective(75, formatoTela, 1, 100);
 		}
 		else {
-			glu.gluPerspective(75, ar, .1, 100);
+			glu.gluPerspective(75, formatoTela, .1, 100);
 		}
 	}
 
@@ -232,42 +222,39 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 		gl.glMatrixMode(GL2.GL_MODELVIEW);
 		gl.glLoadIdentity();
 	
-		if (maze.isTopView() ) {
-			glu.gluLookAt(maze.getLength() / 2, 10, maze.getHeight() / -2, 
-						  maze.getLength() / 2,  0, maze.getHeight() / -2, 
+		if (labirinto.isTopView() ) {
+			glu.gluLookAt(labirinto.getTamanho() / 2, 10, labirinto.getAltura() / -2, 
+						  labirinto.getTamanho() / 2,  0, labirinto.getAltura() / -2, 
 						  0, 0, -1);
 		}
 		else {
-			float x = currX,
-				  y = Cubo.halfWidth(),
-				  z = currZ;
+			float x = xAtual,
+				  y = Cubo.metadeLargura(),
+				  z = zAtual;
 
-			// move to the position
+			// Movendo a posicao
 			gl.glTranslatef(-x, -y, -z);
 			
-			// adjust orientation
 			gl.glTranslatef(x, y, z);
 			gl.glRotatef(currRotationAngle, 0, 1, 0);
 			gl.glTranslatef(-x, -y, -z);
 			
-//			gl.glRotatef(currRotationAngle, 0, 1, 0);
-//			gl.glTranslatef(x, y, z);
 		}
 	}
 
 	@Override
 	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
-		// Called when the canvas has been resized
-		// Note: glViewport(x, y, width, height) has already been called so don't bother if that's what you want
+		// Chamada quando a tela for redimensionada.
+		// Nota: glViewport(x, y, width, height) 
 		if (TRACE)
 			System.out.println("-> executing reshape(" + x + ", " + y + ", " + width + ", " + height + ")");
 	
-		ar = (float) width / (height == 0 ? 1 : height);
+		formatoTela = (float) width / (height == 0 ? 1 : height);
 	}
 
 	@Override
 	public void dispose(GLAutoDrawable drawable) {
-		// Called when the canvas is destroyed (reverse anything from init) 
+		// Chamada quando o canvas é destruido
 		if (TRACE)
 			System.out.println("-> executing dispose()");
 	}
@@ -277,32 +264,32 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 		int typedChar = e.getKeyCode();
 		
 		if (typedChar == KeyEvent.VK_LEFT || e.getKeyChar() == 'a') {
-			maze.turnLeft();
+			labirinto.virarEsquerda();
 			offsetRotationAngle -= 90;
 			
 			System.out.println("turned left");
 		}
 		else if (typedChar == KeyEvent.VK_RIGHT || e.getKeyChar() == 'd') {
-			maze.turnRight();
+			labirinto.virarDireita();
 			offsetRotationAngle += 90;
 			
 			System.out.println("turned right");
 		}
 		else if (typedChar == KeyEvent.VK_UP || e.getKeyChar() == 'w') {
-			maze.moveForward();
+			labirinto.moverFrente();
 			System.out.println("moved forward");
 		}
 		else if (typedChar == KeyEvent.VK_DOWN || e.getKeyChar() == 's') {
-			maze.moveBackward();
+			labirinto.moverTras();
 			System.out.println("moved backward");
 		}
 		else if (typedChar == KeyEvent.VK_SPACE) {
-			maze.reverseTopView();
-			System.out.println("Top view: " + maze.isTopView());
+			labirinto.reverseTopView();
+			System.out.println("Top view: " + labirinto.isTopView());
 		}
 		
 		if (typedChar != KeyEvent.VK_SPACE) {
-			System.out.println(maze);
+			System.out.println(labirinto);
 		}
 		
 		((GLCanvas)e.getSource()).repaint();

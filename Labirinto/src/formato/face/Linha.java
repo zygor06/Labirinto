@@ -8,15 +8,9 @@ import formato.face.util.Color;
 import formato.face.util.Vertex3D;
 
 /**
- * Line
+ * Linha
  *
- * is a special case of face where # of vertices is 2
- * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
+ *É um caso especial de face onde o número de vertices é igual a 2
  * 
  */
 public class Linha extends Face {

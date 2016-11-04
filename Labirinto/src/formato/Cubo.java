@@ -7,15 +7,9 @@ import formato.face.util.Color;
 import formato.face.util.Vertex3D;
 
 /**
- * Cube
+ * Cubo
  * 
- * has five faces: front, right, back, left and top.
- * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
+ * Possui cinco faces: frente, direita, atrás, esquerda e topo.
  * 
  */
 public class Cubo extends Formato {
@@ -28,8 +22,8 @@ public class Cubo extends Formato {
 		super(bottomLeft);
 	}
 
-	public static float halfWidth() {
-		return 0.5f;
+	public static float metadeLargura() {
+		return (float)WIDTH/2;
 	}
 	
 	@Override
@@ -50,22 +44,22 @@ public class Cubo extends Formato {
 
 		ArrayList<Vertex3D> vertices = new ArrayList<Vertex3D>();
 		
-		Vertex3D origin = getRelativeOrigin();
+		Vertex3D origin = getOrigenRelativa();
 		float ox = origin.x(), oy = origin.y(), oz = origin.z();
 		
-		// front
-		vertices.add(new Vertex3D(origin) ); // bottom left
-		vertices.add(new Vertex3D(ox + WIDTH, oy, oz)); // bottom right
-		vertices.add(new Vertex3D(ox + WIDTH, oy + WIDTH, oz)); // top right
-		vertices.add(new Vertex3D(ox, oy + WIDTH, oz)); // top left
+		// frente
+		vertices.add(new Vertex3D(origin) ); 
+		vertices.add(new Vertex3D(ox + WIDTH, oy, oz)); 
+		vertices.add(new Vertex3D(ox + WIDTH, oy + WIDTH, oz));
+		vertices.add(new Vertex3D(ox, oy + WIDTH, oz)); 
 		
-		// right
-		vertices.add(new Vertex3D(ox + WIDTH, oy, oz - WIDTH)); // bottom right
-		vertices.add(new Vertex3D(ox + WIDTH, oy + WIDTH, oz - WIDTH)); // top right
+		// direita
+		vertices.add(new Vertex3D(ox + WIDTH, oy, oz - WIDTH)); 
+		vertices.add(new Vertex3D(ox + WIDTH, oy + WIDTH, oz - WIDTH));
 
-		// left
-		vertices.add(new Vertex3D(ox, oy + WIDTH, oz - WIDTH)); // top left
-		vertices.add(new Vertex3D(ox, oy, oz - WIDTH)); // bottom left
+		// esquerda
+		vertices.add(new Vertex3D(ox, oy + WIDTH, oz - WIDTH)); 
+		vertices.add(new Vertex3D(ox, oy, oz - WIDTH)); 
 		
 		return vertices;
 	}

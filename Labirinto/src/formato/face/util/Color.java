@@ -2,18 +2,6 @@ package formato.face.util;
 
 import com.jogamp.opengl.GL2;
 
-/**
- * Color
- *
- * encapsulates 1. color RGB data 2. wrap up glColor*() functions from GL
- * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
- * 
- */
 public class Color {
 
 	public static Color BLACK = new Color(0f, 0f, 0f);

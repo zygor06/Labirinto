@@ -8,15 +8,9 @@ import formato.face.util.Vertex3D;
 import labirinto.Texturas;
 
 /**
- * Wall
+ * Parede
  * 
- * is one kind of component in the maze.
- * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
+ * parede é um tipo de componente do labirinto
  * 
  */
 public class Parede extends Cubo implements ComponenteLabirinto {
@@ -42,6 +36,6 @@ public class Parede extends Cubo implements ComponenteLabirinto {
 
 	@Override
 	protected String getName() {
-		return "wall";
+		return "parede";
 	}
 }

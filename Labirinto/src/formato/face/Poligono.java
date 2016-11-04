@@ -6,15 +6,10 @@ import formato.face.util.Color;
 import formato.face.util.Vertex3D;
 
 /**
- * Polygon
+ * Poligono
  *
- * is a special case of face where # of vertices is >= 3
+ * É um caso espcial de face onde o número de vértices é igual ou maior que 3
  * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
  * 
  */
 public class Poligono extends Face {
@@ -36,7 +31,7 @@ public class Poligono extends Face {
 		gl.glDisable(GL2.GL_POLYGON_OFFSET_FILL);
 	}
 
-	public void drawOutline(GL2 gl, Color color) {
+	public void drawLinha(GL2 gl, Color color) {
 		gl.glDisable(GL2.GL_TEXTURE_2D);
 		gl.glPolygonMode(GL2.GL_FRONT_AND_BACK, GL2.GL_LINE);
 		

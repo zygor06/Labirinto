@@ -10,14 +10,8 @@ import formato.face.util.Vertex3D;
 /**
  * Face
  * 
- * tries to wrap primitives of OpenGl
- * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
- * 
+ * Tentativas de coloca primitivas de opengl
+ *  
  */
 public abstract class Face {
 

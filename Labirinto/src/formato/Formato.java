@@ -9,15 +9,10 @@ import formato.face.util.Color;
 import formato.face.util.Vertex3D;
 
 /**
- * Shape
+ * Formato
  * 
- * A 3D object with multiple faces. It's formed based on the relative "tiptop" vertex
+ * Um objeto 3D com multiplas faces.
  * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
  * 
  */
 public abstract class Formato {
@@ -26,7 +21,7 @@ public abstract class Formato {
 	
 	private ArrayList<Poligono> _faces;
 
-	private final Color OUTLINE_COLOR = Color.WHITE;
+	private final Color LINHA_CONTORNO = Color.WHITE;
 	
 	public Formato(Vertex3D tiptop) {
 
@@ -36,7 +31,7 @@ public abstract class Formato {
 		initFaces();
 	}
 	
-	protected Vertex3D getRelativeOrigin() {
+	protected Vertex3D getOrigenRelativa() {
 		return _relativeOrigin;
 	}
 	
@@ -51,7 +46,7 @@ public abstract class Formato {
 	public void draw(GL2 gl) {
 		for (Poligono f : _faces) {
 			f.draw(gl);
-			f.drawOutline(gl, OUTLINE_COLOR);
+			f.drawLinha(gl, LINHA_CONTORNO);
 		}
 	}
 

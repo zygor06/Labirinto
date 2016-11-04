@@ -10,36 +10,31 @@ import formato.face.util.Vertex3D;
 import labirinto.Labirinto;
 
 /**
- * Arrow
+ * Seta
  * 
- * is the arrow shown in the top view
+ * é a seta mostrada na visão de cima do jogo.
  * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
  * 
  */
 public class Seta {
 
 	private Vertex3D _bottomLeftVertex;
 
-	private Poligono leftArrow, rightArrow;
+	private Poligono setaEsquerda, setaDireita;
 
 	public Seta(Vertex3D bottomLeftVertex) {
 		_bottomLeftVertex = bottomLeftVertex;
 
-		leftArrow = new Poligono();
-		rightArrow = new Poligono();
+		setaEsquerda = new Poligono();
+		setaDireita = new Poligono();
 
-		leftArrow.setColor(Color.DARK_VIOLET);
-		rightArrow.setColor(Color.DARK_VIOLET);
+		setaEsquerda.setColor(Color.DARK_VIOLET);
+		setaDireita.setColor(Color.DARK_VIOLET);
 		
-		setUpVertices();
+		configurarVertices();
 	}
 
-	private void setUpVertices() {
+	private void configurarVertices() {
 
 		int width = Cubo.WIDTH;
 		float halfWidth = (float)width * 0.5f;
@@ -52,13 +47,13 @@ public class Seta {
 				_bottomLeftVertex.y() + 0.01f,
 				_bottomLeftVertex.z() - width );
 
-		leftArrow.addVertex(left);
-		leftArrow.addVertex(backArrowVertex);
-		leftArrow.addVertex(frontArrowVertex);
+		setaEsquerda.addVertex(left);
+		setaEsquerda.addVertex(backArrowVertex);
+		setaEsquerda.addVertex(frontArrowVertex);
 
-		rightArrow.addVertex(backArrowVertex);
-		rightArrow.addVertex(right);
-		rightArrow.addVertex(frontArrowVertex);
+		setaDireita.addVertex(backArrowVertex);
+		setaDireita.addVertex(right);
+		setaDireita.addVertex(frontArrowVertex);
 	}
 
 	public void draw(GL2 gl, int currFacing) {
@@ -101,7 +96,7 @@ public class Seta {
 	}
 	
 	private void draw(GL2 gl) {
-		leftArrow.draw(gl);
-		rightArrow.draw(gl);
+		setaEsquerda.draw(gl);
+		setaDireita.draw(gl);
 	}
 }
