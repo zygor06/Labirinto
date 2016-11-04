@@ -1,11 +1,11 @@
-package shape.face;
+package formato.face;
 
 
 
 import com.jogamp.opengl.GL2;
 
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
 
 /**
  * Line
@@ -19,9 +19,9 @@ import shape.face.util.Vertex3D;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class Line extends Face {
+public class Linha extends Face {
 
-	public Line(Color color, Vertex3D start, Vertex3D end) {
+	public Linha(Color color, Vertex3D start, Vertex3D end) {
 		setColor(color);
 		addVertex(start, end);
 	}

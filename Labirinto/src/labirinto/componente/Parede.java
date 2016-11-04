@@ -1,11 +1,11 @@
-package maze.component;
+package labirinto.componente;
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.texture.Texture;
 
-import maze.Textures;
-import shape.Cube;
-import shape.face.util.Vertex3D;
+import formato.Cubo;
+import formato.face.util.Vertex3D;
+import labirinto.Texturas;
 
 /**
  * Wall
@@ -19,11 +19,11 @@ import shape.face.util.Vertex3D;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class Wall extends Cube implements MazeComponent {
+public class Parede extends Cubo implements ComponenteLabirinto {
 
 	private int _textureIndex;
 	
-	public Wall(Vertex3D bottomLeft, int textureIndex) {
+	public Parede(Vertex3D bottomLeft, int textureIndex) {
 		super(bottomLeft);
 		
 		_textureIndex = textureIndex;
@@ -31,7 +31,7 @@ public class Wall extends Cube implements MazeComponent {
 	
 	@Override
 	public void draw(GL2 gl) {
-		Texture texture = Textures.get(_textureIndex);
+		Texture texture = Texturas.get(_textureIndex);
 		texture.enable(gl);
 		texture.bind(gl);
 		

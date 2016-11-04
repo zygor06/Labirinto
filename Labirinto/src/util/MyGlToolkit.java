@@ -4,9 +4,9 @@ package util;
 
 import com.jogamp.opengl.GL2;
 
-import shape.face.Line;
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.face.Linha;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
 
 /**
  * MyGlToolkit
@@ -37,9 +37,9 @@ public class MyGlToolkit {
 	 * @param gl
 	 */
 	public static void drawPositiveAxes(final GL2 gl) {
-		Line x = new Line(Color.RED,   Vertex3D.ORIGIN, new Vertex3D(100, 0, 0));
-		Line y = new Line(Color.GREEN, Vertex3D.ORIGIN, new Vertex3D(0, 100, 0));
-		Line z = new Line(Color.BLUE,  Vertex3D.ORIGIN, new Vertex3D(0, 0, 100));
+		Linha x = new Linha(Color.RED,   Vertex3D.ORIGIN, new Vertex3D(100, 0, 0));
+		Linha y = new Linha(Color.GREEN, Vertex3D.ORIGIN, new Vertex3D(0, 100, 0));
+		Linha z = new Linha(Color.BLUE,  Vertex3D.ORIGIN, new Vertex3D(0, 0, 100));
 		
 		gl.glLineWidth(3f);
 		x.draw(gl);

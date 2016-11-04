@@ -1,11 +1,11 @@
-package shape.face;
+package formato.face;
 
 import java.util.ArrayList;
 
 import com.jogamp.opengl.GL2;
 
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
 
 /**
  * Face

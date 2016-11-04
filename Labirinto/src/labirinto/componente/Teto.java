@@ -1,29 +1,29 @@
-package maze.component;
+package labirinto.componente;
 
 
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.texture.Texture;
 
-import maze.Textures;
-import shape.Cube;
-import shape.face.Polygon;
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.Cubo;
+import formato.face.Poligono;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
+import labirinto.Texturas;
 
-public class Teto implements MazeComponent {
+public class Teto implements ComponenteLabirinto {
 
-	private Polygon _topSquareSurface;
+	private Poligono _topSquareSurface;
 	
 	public Teto(Vertex3D topLeftVertex) {
-		_topSquareSurface = new Polygon();
-		_topSquareSurface.setColor(Cube.FILL_COLOR);
+		_topSquareSurface = new Poligono();
+		_topSquareSurface.setColor(Cubo.FILL_COLOR);
 		setUpVertices(topLeftVertex);
 	}
 	
 	private void setUpVertices(Vertex3D topLeftVertex) {
 		float ox = topLeftVertex.x(), oy = topLeftVertex.y(), oz = topLeftVertex.z();
-		int width = Cube.WIDTH;
+		int width = Cubo.WIDTH;
 		
 		_topSquareSurface.addVertex(topLeftVertex);
 		_topSquareSurface.addVertex(ox + width, oy, oz);
@@ -32,7 +32,7 @@ public class Teto implements MazeComponent {
 	}
 	
 	public void draw(GL2 gl) {
-		Texture texture = Textures.get(0);
+		Texture texture = Texturas.get(0);
 		texture.enable(gl);
 		texture.bind(gl);
 		

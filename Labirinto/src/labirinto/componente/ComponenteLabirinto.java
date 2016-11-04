@@ -1,4 +1,4 @@
-package maze.component;
+package labirinto.componente;
 
 import com.jogamp.opengl.GL2;
 
@@ -14,7 +14,7 @@ import com.jogamp.opengl.GL2;
  * @platform Ubuntu, 32 bit
  * 
  */
-public interface MazeComponent {
+public interface ComponenteLabirinto {
 
 	void draw(GL2 gl);
 }

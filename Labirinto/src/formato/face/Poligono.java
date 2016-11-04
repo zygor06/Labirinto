@@ -1,9 +1,9 @@
-package shape.face;
+package formato.face;
 
 import com.jogamp.opengl.GL2;
 
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
 
 /**
  * Polygon
@@ -17,13 +17,13 @@ import shape.face.util.Vertex3D;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class Polygon extends Face {
+public class Poligono extends Face {
 
-	public Polygon(Color color, Vertex3D...vertices) {
+	public Poligono(Color color, Vertex3D...vertices) {
 		super(color, vertices);
 	}
 
-	public Polygon() {
+	public Poligono() {
 		super();
 	}
 	

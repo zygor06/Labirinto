@@ -1,4 +1,4 @@
-package maze;
+package labirinto;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -6,12 +6,12 @@ import java.io.IOException;
 
 import com.jogamp.opengl.GL2;
 
-import maze.component.Arrow;
-import maze.component.Floor;
-import maze.component.MazeComponent;
-import maze.component.Wall;
-import shape.Cube;
-import shape.face.util.Vertex3D;
+import formato.Cubo;
+import formato.face.util.Vertex3D;
+import labirinto.componente.Seta;
+import labirinto.componente.Chao;
+import labirinto.componente.ComponenteLabirinto;
+import labirinto.componente.Parede;
 
 /**
  * Maze
@@ -23,7 +23,7 @@ import shape.face.util.Vertex3D;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class Maze {
+public class Labirinto {
 
 	private boolean topView;
 	
@@ -34,9 +34,9 @@ public class Maze {
 	private int orientation;
 
 	private char[][] map;
-	private MazeComponent[][] mazeComponents;
+	private ComponenteLabirinto[][] mazeComponents;
 	
-	public Maze(String mazeFileName) {
+	public Labirinto(String mazeFileName) {
 		init(mazeFileName);
 		initMazeComponents();
 		
@@ -44,11 +44,11 @@ public class Maze {
 	}
 
 	public float currEyeX() {
-		return getCurrCol() + Cube.halfWidth();
+		return getCurrCol() + Cubo.halfWidth();
 	}
 
 	public float currEyeZ() {
-		return getCurrRow() - Cube.halfWidth();
+		return getCurrRow() - Cubo.halfWidth();
 	}
 	
 	private int getCurrRow() { return currLocationRow - getHeight() + 1; }
@@ -64,7 +64,7 @@ public class Maze {
 	
 	private void initMazeComponents() {
 		int height = map.length, insideLength = map[0].length;
-		mazeComponents = new MazeComponent[height][insideLength];
+		mazeComponents = new ComponenteLabirinto[height][insideLength];
 		
 		for (int i = height - 1, z = 0; i >= 0 ; i--, z--) {
 			for (int j = 0; j < insideLength; j++) {
@@ -73,10 +73,10 @@ public class Maze {
 				
 				char ch = map[i][j];
 				if (ch == ' ')
-					mazeComponents[i][j] = new Floor(origin);
+					mazeComponents[i][j] = new Chao(origin);
 				else {
 					assert ch != ' ';
-					mazeComponents[i][j] = new Wall(origin, Integer.parseInt(ch + "") );
+					mazeComponents[i][j] = new Parede(origin, Integer.parseInt(ch + "") );
 				}
 			}
 		}
@@ -93,7 +93,7 @@ public class Maze {
 		
 		if (topView) {
 			Vertex3D origin = new Vertex3D(currLocationColumn, 0, getCurrRow() );
-			new Arrow(origin).draw(gl, orientation);
+			new Seta(origin).draw(gl, orientation);
 		}
 	}
 

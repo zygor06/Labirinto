@@ -16,9 +16,9 @@ import com.jogamp.opengl.GLProfile;
 import com.jogamp.opengl.awt.GLCanvas;
 import com.jogamp.opengl.glu.GLU;
 
-import maze.Maze;
-import maze.Textures;
-import shape.Cube;
+import formato.Cubo;
+import labirinto.Labirinto;
+import labirinto.Texturas;
 import util.MyGlToolkit;
 
 /**
@@ -35,7 +35,7 @@ import util.MyGlToolkit;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class HanZhaoA5 extends KeyAdapter implements GLEventListener {
+public class Jogo extends KeyAdapter implements GLEventListener {
 
 	public static final boolean TRACE = false;
 
@@ -86,7 +86,7 @@ public class HanZhaoA5 extends KeyAdapter implements GLEventListener {
 
 	/*** Instance variables and methods ***/
 
-	private Maze maze;
+	private Labirinto maze;
 	
 	private float ar; // aspect ratio
 
@@ -100,7 +100,7 @@ public class HanZhaoA5 extends KeyAdapter implements GLEventListener {
 
 		setTimer(canvas);
 
-		maze = new Maze("sample_maze.txt");
+		maze = new Labirinto("sample_maze.txt");
 		System.out.println(maze);
 		
 		currRotationAngle = 90 * maze.getOrientation();
@@ -187,7 +187,7 @@ public class HanZhaoA5 extends KeyAdapter implements GLEventListener {
 		
 		gl.glEnable(GL2.GL_CULL_FACE); // enable backface culling
 
-		Textures.init(gl);
+		Texturas.init(gl);
 	}
 
 	@Override
@@ -239,7 +239,7 @@ public class HanZhaoA5 extends KeyAdapter implements GLEventListener {
 		}
 		else {
 			float x = currX,
-				  y = Cube.halfWidth(),
+				  y = Cubo.halfWidth(),
 				  z = currZ;
 
 			// move to the position

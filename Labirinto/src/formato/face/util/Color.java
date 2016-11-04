@@ -1,4 +1,4 @@
-package shape.face.util;
+package formato.face.util;
 
 import com.jogamp.opengl.GL2;
 

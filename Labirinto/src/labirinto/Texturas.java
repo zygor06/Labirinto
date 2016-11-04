@@ -1,4 +1,4 @@
-package maze;
+package labirinto;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -24,7 +24,7 @@ import com.jogamp.opengl.util.texture.awt.AWTTextureIO;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class Textures {
+public class Texturas {
 	
 	private static Texture[] textures = null;
 	

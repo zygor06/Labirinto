@@ -1,15 +1,15 @@
-package maze.component;
+package labirinto.componente;
 
 
 
 import com.jogamp.opengl.GL2;
 import com.jogamp.opengl.util.texture.Texture;
 
-import maze.Textures;
-import shape.Cube;
-import shape.face.Polygon;
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.Cubo;
+import formato.face.Poligono;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
+import labirinto.Texturas;
 
 /**
  * Floor
@@ -23,19 +23,19 @@ import shape.face.util.Vertex3D;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class Floor implements MazeComponent {
+public class Chao implements ComponenteLabirinto {
 
-	private Polygon _bottomSquareSurface;
+	private Poligono _bottomSquareSurface;
 	
-	public Floor(Vertex3D bottomLeftVertex) {
-		_bottomSquareSurface = new Polygon();
-		_bottomSquareSurface.setColor(Cube.FILL_COLOR);
+	public Chao(Vertex3D bottomLeftVertex) {
+		_bottomSquareSurface = new Poligono();
+		_bottomSquareSurface.setColor(Cubo.FILL_COLOR);
 		setUpVertices(bottomLeftVertex);
 	}
 	
 	private void setUpVertices(Vertex3D bottomLeftVertex) {
 		float ox = bottomLeftVertex.x(), oy = bottomLeftVertex.y(), oz = bottomLeftVertex.z();
-		int width = Cube.WIDTH;
+		int width = Cubo.WIDTH;
 		
 		_bottomSquareSurface.addVertex(bottomLeftVertex);
 		_bottomSquareSurface.addVertex(ox + width, oy, oz);
@@ -44,7 +44,7 @@ public class Floor implements MazeComponent {
 	}
 	
 	public void draw(GL2 gl) {
-		Texture texture = Textures.get(0);
+		Texture texture = Texturas.get(0);
 		texture.enable(gl);
 		texture.bind(gl);
 		

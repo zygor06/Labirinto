@@ -1,12 +1,12 @@
-package shape;
+package formato;
 
 import java.util.ArrayList;
 
 import com.jogamp.opengl.GL2;
 
-import shape.face.Polygon;
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.face.Poligono;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
 
 /**
  * Shape
@@ -20,19 +20,19 @@ import shape.face.util.Vertex3D;
  * @platform Ubuntu, 32 bit
  * 
  */
-public abstract class Shape {
+public abstract class Formato {
 
 	private final Vertex3D _relativeOrigin;
 	
-	private ArrayList<Polygon> _faces;
+	private ArrayList<Poligono> _faces;
 
 	private final Color OUTLINE_COLOR = Color.WHITE;
 	
-	public Shape(Vertex3D tiptop) {
+	public Formato(Vertex3D tiptop) {
 
 		_relativeOrigin = tiptop;
 
-		_faces = new ArrayList<Polygon>();
+		_faces = new ArrayList<Poligono>();
 		initFaces();
 	}
 	
@@ -42,14 +42,14 @@ public abstract class Shape {
 	
 	protected abstract void initFaces();
 
-	protected void addFaces(Polygon ... faces) {
-		for (Polygon f : faces) {
+	protected void addFaces(Poligono ... faces) {
+		for (Poligono f : faces) {
 			_faces.add(f);
 		}
 	}
 
 	public void draw(GL2 gl) {
-		for (Polygon f : _faces) {
+		for (Poligono f : _faces) {
 			f.draw(gl);
 			f.drawOutline(gl, OUTLINE_COLOR);
 		}

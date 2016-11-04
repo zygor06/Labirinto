@@ -1,10 +1,10 @@
-package shape;
+package formato;
 
 import java.util.ArrayList;
 
-import shape.face.Polygon;
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.face.Poligono;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
 
 /**
  * Cube
@@ -18,13 +18,13 @@ import shape.face.util.Vertex3D;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class Cube extends Shape {
+public class Cubo extends Formato {
 
 	public static final int WIDTH = 1;
 	
 	public static final Color FILL_COLOR = Color.WHITE;
 	
-	public Cube(Vertex3D bottomLeft) {
+	public Cubo(Vertex3D bottomLeft) {
 		super(bottomLeft);
 	}
 
@@ -37,13 +37,13 @@ public class Cube extends Shape {
 
 		ArrayList<Vertex3D> vertices = initFacesVertices();
 		
-		Polygon front = new Polygon(FILL_COLOR, vertices.get(0), vertices.get(1), vertices.get(2), vertices.get(3));
-		Polygon right = new Polygon(FILL_COLOR, vertices.get(1), vertices.get(4), vertices.get(5), vertices.get(2));
-		Polygon back  = new Polygon(FILL_COLOR, vertices.get(4), vertices.get(7), vertices.get(6), vertices.get(5));
-		Polygon left  = new Polygon(FILL_COLOR, vertices.get(7), vertices.get(0), vertices.get(3), vertices.get(6));
-		Polygon top   = new Polygon(FILL_COLOR, vertices.get(3), vertices.get(2), vertices.get(5), vertices.get(6));
+		Poligono front = new Poligono(FILL_COLOR, vertices.get(0), vertices.get(1), vertices.get(2), vertices.get(3));
+		Poligono right = new Poligono(FILL_COLOR, vertices.get(1), vertices.get(4), vertices.get(5), vertices.get(2));
+		Poligono back  = new Poligono(FILL_COLOR, vertices.get(4), vertices.get(7), vertices.get(6), vertices.get(5));
+		Poligono left  = new Poligono(FILL_COLOR, vertices.get(7), vertices.get(0), vertices.get(3), vertices.get(6));
+		Poligono top   = new Poligono(FILL_COLOR, vertices.get(3), vertices.get(2), vertices.get(5), vertices.get(6));
 		
-		addFaces(new Polygon[] {front, right, back, left, top} );
+		addFaces(new Poligono[] {front, right, back, left, top} );
 	}
 
 	private ArrayList<Vertex3D> initFacesVertices() {

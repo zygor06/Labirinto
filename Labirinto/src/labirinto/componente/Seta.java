@@ -1,13 +1,13 @@
-package maze.component;
+package labirinto.componente;
 
 
 import com.jogamp.opengl.GL2;
 
-import maze.Maze;
-import shape.Cube;
-import shape.face.Polygon;
-import shape.face.util.Color;
-import shape.face.util.Vertex3D;
+import formato.Cubo;
+import formato.face.Poligono;
+import formato.face.util.Color;
+import formato.face.util.Vertex3D;
+import labirinto.Labirinto;
 
 /**
  * Arrow
@@ -21,17 +21,17 @@ import shape.face.util.Vertex3D;
  * @platform Ubuntu, 32 bit
  * 
  */
-public class Arrow {
+public class Seta {
 
 	private Vertex3D _bottomLeftVertex;
 
-	private Polygon leftArrow, rightArrow;
+	private Poligono leftArrow, rightArrow;
 
-	public Arrow(Vertex3D bottomLeftVertex) {
+	public Seta(Vertex3D bottomLeftVertex) {
 		_bottomLeftVertex = bottomLeftVertex;
 
-		leftArrow = new Polygon();
-		rightArrow = new Polygon();
+		leftArrow = new Poligono();
+		rightArrow = new Poligono();
 
 		leftArrow.setColor(Color.DARK_VIOLET);
 		rightArrow.setColor(Color.DARK_VIOLET);
@@ -41,7 +41,7 @@ public class Arrow {
 
 	private void setUpVertices() {
 
-		int width = Cube.WIDTH;
+		int width = Cubo.WIDTH;
 		float halfWidth = (float)width * 0.5f;
 		
 		Vertex3D left = new Vertex3D(_bottomLeftVertex.x(), _bottomLeftVertex.y(), _bottomLeftVertex.z() );
@@ -64,7 +64,7 @@ public class Arrow {
 	public void draw(GL2 gl, int currFacing) {
 		gl.glPushMatrix();
 			
-			float halfWidth = (float)Cube.WIDTH * 0.5f;
+			float halfWidth = (float)Cubo.WIDTH * 0.5f;
 			float x = _bottomLeftVertex.x() + halfWidth;
 			float z = _bottomLeftVertex.z() * -1 + halfWidth;
 			gl.glTranslatef(x, 0, -z);
@@ -80,16 +80,16 @@ public class Arrow {
 		int rotateAngle = 0;
 		
 		switch (currFacing) {
-			case Maze.FRONT:
+			case Labirinto.FRONT:
 				rotateAngle = 0;
 				break;
-			case Maze.RIGHT:
+			case Labirinto.RIGHT:
 				rotateAngle = -90;
 				break;
-			case Maze.BACK:
+			case Labirinto.BACK:
 				rotateAngle = 180;
 				break;
-			case Maze.LEFT:
+			case Labirinto.LEFT:
 				rotateAngle = 90;
 				break;
 
