@@ -8,6 +8,14 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 
+import com.jogamp.opengl.GL2;
+import com.jogamp.opengl.GLAutoDrawable;
+import com.jogamp.opengl.GLCapabilities;
+import com.jogamp.opengl.GLEventListener;
+import com.jogamp.opengl.GLProfile;
+import com.jogamp.opengl.awt.GLCanvas;
+import com.jogamp.opengl.glu.GLU;
+
 import formato.Cubo;
 import labirinto.Labirinto;
 import labirinto.Texturas;
