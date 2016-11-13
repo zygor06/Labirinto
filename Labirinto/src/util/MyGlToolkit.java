@@ -8,18 +8,7 @@ import formato.face.Linha;
 import formato.face.util.Color;
 import formato.face.util.Vertex3D;
 
-/**
- * MyGlToolkit
- *
- * encapsulate some method like: enable line smooth and draw x,y,z axes.
- * 
- * @instructor John Braico
- * @assignment A5
- * @author Zhao Han, 7633813
- * @date Dec 7, 2011
- * @platform Ubuntu, 32 bit
- * 
- */
+
 public class MyGlToolkit {
 
 	public static void lineSmooth(final GL2 gl) {
@@ -28,14 +17,6 @@ public class MyGlToolkit {
 		gl.glEnable(GL2.GL_LINE_SMOOTH);
 	}
 
-	/**
-	 * Color:
-	 *  x axe: red;
-	 *  y axe: green;
-	 *  z axe: blue;
-	 * 
-	 * @param gl
-	 */
 	public static void drawPositiveAxes(final GL2 gl) {
 		Linha x = new Linha(Color.RED,   Vertex3D.ORIGIN, new Vertex3D(100, 0, 0));
 		Linha y = new Linha(Color.GREEN, Vertex3D.ORIGIN, new Vertex3D(0, 100, 0));

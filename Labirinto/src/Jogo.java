@@ -8,14 +8,6 @@ import java.util.TimerTask;
 
 import javax.swing.JFrame;
 
-import com.jogamp.opengl.GL2;
-import com.jogamp.opengl.GLAutoDrawable;
-import com.jogamp.opengl.GLCapabilities;
-import com.jogamp.opengl.GLEventListener;
-import com.jogamp.opengl.GLProfile;
-import com.jogamp.opengl.awt.GLCanvas;
-import com.jogamp.opengl.glu.GLU;
-
 import formato.Cubo;
 import labirinto.Labirinto;
 import labirinto.Texturas;
@@ -30,19 +22,19 @@ import util.MyGlToolkit;
  */
 public class Jogo extends KeyAdapter implements GLEventListener {
 
-	public static final boolean TRACE = false;
+	public static final boolean RASTRO = false;
 
-	public static final String WINDOW_TITLE = "Labirinto Evil Macabro";
-	public static final int INITIAL_WIDTH = 900, INITIAL_HEIGHT = INITIAL_WIDTH / 16 * 10;
+	public static final String TITULO_JANELA = "Labirinto Evil Macabro";
+	public static final int LARGURA_INICIAL = 900, ALTURA_INICIAL = LARGURA_INICIAL / 16 * 10;
 
 	private static final GLU glu = new GLU();
 
 	public static void main(String[] args) {
-		final JFrame frame = new JFrame(WINDOW_TITLE);
+		final JFrame frame = new JFrame(TITULO_JANELA);
 
 		frame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent e) {
-				if (TRACE)
+				if (RASTRO)
 					System.out.println("fechando janela '" + ((JFrame)e.getWindow()).getTitle() + "'");
 				System.exit(0);
 			}
@@ -60,7 +52,7 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 			e.printStackTrace();
 			System.exit(1);
 		}
-		canvas.setSize(INITIAL_WIDTH, INITIAL_HEIGHT);
+		canvas.setSize(LARGURA_INICIAL, ALTURA_INICIAL);
 
 		frame.getContentPane().add(canvas);
 		frame.pack();
@@ -68,7 +60,7 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 
 		canvas.requestFocusInWindow();
 
-		if (TRACE)
+		if (RASTRO)
 			System.out.println("-> fim do main().");
 	}
 
@@ -87,12 +79,12 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 
 	public void configurar(final GLCanvas canvas) {
 		// Chamada para a configuração
-		if (TRACE)
-			System.out.println("-> executanco configuracao()");
+		if (RASTRO)
+			System.out.println("-> executando configuracao()");
 
 		setTimer(canvas);
 
-		labirinto = new Labirinto("sample_maze.txt");
+		labirinto = new Labirinto("labirinto.txt");
 		System.out.println(labirinto);
 		
 		currRotationAngle = 90 * labirinto.getOrientacao();
@@ -166,8 +158,8 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 	@Override
 	public void init(GLAutoDrawable drawable) {
 		// Chamada quando o canvas é recriado - usado para a configuracao do GL
-		if (TRACE)
-			System.out.println("-> executing init()");
+		if (RASTRO)
+			System.out.println("-> executando init()");
 
 		final GL2 gl = drawable.getGL().getGL2();
 		
@@ -185,8 +177,8 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 	@Override
 	public void display(GLAutoDrawable drawable) {
 		// Desenhando a tela
-		if (TRACE)
-			System.out.println("-> executing display()");
+		if (RASTRO)
+			System.out.println("-> executando display()");
 
 		final GL2 gl = drawable.getGL().getGL2();
 
@@ -246,8 +238,8 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 	public void reshape(GLAutoDrawable drawable, int x, int y, int width, int height) {
 		// Chamada quando a tela for redimensionada.
 		// Nota: glViewport(x, y, width, height) 
-		if (TRACE)
-			System.out.println("-> executing reshape(" + x + ", " + y + ", " + width + ", " + height + ")");
+		if (RASTRO)
+			System.out.println("-> executando reshape(" + x + ", " + y + ", " + width + ", " + height + ")");
 	
 		formatoTela = (float) width / (height == 0 ? 1 : height);
 	}
@@ -255,8 +247,8 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 	@Override
 	public void dispose(GLAutoDrawable drawable) {
 		// Chamada quando o canvas é destruido
-		if (TRACE)
-			System.out.println("-> executing dispose()");
+		if (RASTRO)
+			System.out.println("-> executando dispose()");
 	}
 	
 	@Override
@@ -267,25 +259,25 @@ public class Jogo extends KeyAdapter implements GLEventListener {
 			labirinto.virarEsquerda();
 			offsetRotationAngle -= 90;
 			
-			System.out.println("turned left");
+			System.out.println("virando para a esquerda");
 		}
 		else if (typedChar == KeyEvent.VK_RIGHT || e.getKeyChar() == 'd') {
 			labirinto.virarDireita();
 			offsetRotationAngle += 90;
 			
-			System.out.println("turned right");
+			System.out.println("virando para a direita");
 		}
 		else if (typedChar == KeyEvent.VK_UP || e.getKeyChar() == 'w') {
 			labirinto.moverFrente();
-			System.out.println("moved forward");
+			System.out.println("movendo pra frente");
 		}
 		else if (typedChar == KeyEvent.VK_DOWN || e.getKeyChar() == 's') {
 			labirinto.moverTras();
-			System.out.println("moved backward");
+			System.out.println("movendo pra tras");
 		}
 		else if (typedChar == KeyEvent.VK_SPACE) {
-			labirinto.reverseTopView();
-			System.out.println("Top view: " + labirinto.isTopView());
+			labirinto.reverterTopView();
+			System.out.println("Vista de cima: " + labirinto.isTopView());
 		}
 		
 		if (typedChar != KeyEvent.VK_SPACE) {

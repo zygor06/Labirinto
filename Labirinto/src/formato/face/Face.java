@@ -52,8 +52,8 @@ public abstract class Face {
 
 	public abstract void draw(GL2 gl);
 	
-	protected void glBeginEndBlock(GL2 gl, int primitiveType) {
-		gl.glBegin(primitiveType);
+	protected void glBeginEndBlock(GL2 gl, int tipoPrimitivo) {
+		gl.glBegin(tipoPrimitivo);
 		
 		for (Vertex3D v : _vertices)
 			v.setGlVertex3f(gl);
@@ -61,10 +61,10 @@ public abstract class Face {
 		gl.glEnd();
 	}
 
-	protected void glBeginEndBlockWithTexture(GL2 gl, int primitiveType) {
-		gl.glBegin(primitiveType);
+	protected void glBeginEndBlockWithTexture(GL2 gl, int tipoPrimitivo) {
+		gl.glBegin(tipoPrimitivo);
 		
-		final int REPEAT_TIMES = 3;
+		final int REPETIR = 3;
 		float s = 1, t = 1;
 		int caseNum = 0;
 		
@@ -75,18 +75,18 @@ public abstract class Face {
 				caseNum++;
 			}
 			else if (caseNum == 1) {
-				s = REPEAT_TIMES;
+				s = REPETIR;
 				t = 0;
 				caseNum++;
 			}
 			else if (caseNum == 2) {
-				s = REPEAT_TIMES;
-				t = REPEAT_TIMES;
+				s = REPETIR;
+				t = REPETIR;
 				caseNum++;
 			}
 			else if (caseNum == 3) {
 				s = 0;
-				t = REPEAT_TIMES;
+				t = REPETIR;
 				caseNum = 0;
 			}
 			
@@ -99,12 +99,12 @@ public abstract class Face {
 	
 	@Override
 	public String toString() {
-		String result = "face: ";
+		String resultado = "face: ";
 		
 		for (Vertex3D v : _vertices) {
-			result += v.toIntString() + "; ";
+			resultado += v.toIntString() + "; ";
 		}
 		
-		return result;
+		return resultado;
 	}
 }

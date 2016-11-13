@@ -15,12 +15,12 @@ import labirinto.componente.Parede;
 
 public class Labirinto {
 
-	private boolean topView;
+	private boolean vistaDeCima;
 	
 	// location and the orientation facing
 	private int currLocationRow, currLocationColumn;
 	
-	public final static int FRONT = 0, RIGHT = 1, BACK = 2, LEFT = 3;
+	public final static int FRENTE = 0, DIREITA = 1, ATRAS = 2, ESQUERDA = 3;
 	private int orientacao;
 
 	private char[][] mapa;
@@ -30,7 +30,7 @@ public class Labirinto {
 		init(mazeFileName);
 		initMazeComponents();
 		
-		topView = false;
+		vistaDeCima = false;
 	}
 
 	public float currEyeX() {
@@ -49,8 +49,8 @@ public class Labirinto {
 	public int getAltura() { return mapa.length; }
 	public int getTamanho() { return mapa[0].length; }
 
-	public boolean isTopView() { return topView; }
-	public void reverseTopView() { topView = !topView; }
+	public boolean isTopView() { return vistaDeCima; }
+	public void reverterTopView() { vistaDeCima = !vistaDeCima; }
 	
 	private void initMazeComponents() {
 		int height = mapa.length, insideLength = mapa[0].length;
@@ -81,7 +81,7 @@ public class Labirinto {
 			}
 		}
 		
-		if (topView) {
+		if (vistaDeCima) {
 			Vertex3D origin = new Vertex3D(currLocationColumn, 0, getCurrRow() );
 			new Seta(origin).draw(gl, orientacao);
 		}
@@ -223,7 +223,7 @@ public class Labirinto {
 	}
 
 	public String toString() {
-		String result = String.format("mapa: (current: %d, %d )\n", currLocationColumn, getCurrRow() );
+		String result = String.format("mapa: (atual: %d, %d )\n", currLocationColumn, getCurrRow() );
 		
 
 		for (int r = 0; r < mapa.length; r++) {

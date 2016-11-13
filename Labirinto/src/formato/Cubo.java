@@ -66,6 +66,6 @@ public class Cubo extends Formato {
 
 	@Override
 	protected String getName() {
-		return "cube";
+		return "cubo";
 	}
 }

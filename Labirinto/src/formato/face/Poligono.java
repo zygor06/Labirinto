@@ -25,21 +25,16 @@ public class Poligono extends Face {
 	@Override
 	public void draw(GL2 gl) {
 
-		float[] luzAmbiente = { 1.0f, 2.1f, 2.5f, 3.0f };
-		float[] luzDifusa = { 1.0f, 0.8f, 0.8f, 1.0f };
-		float[] posicaoLuz = { 30.0f, 30.0f, 0.0f, 1.0f };
+		float[] luzAmbiente = { 1.0f, 2.1f, 2.5f, 3.0f };		
 
 		gl.glEnable(GL2.GL_POLYGON_OFFSET_FILL);
 		gl.glPolygonOffset(1.0f, 1.0f);
 		setColor3f(gl);
-
 		
 
 		glBeginEndBlockWithTexture(gl, GL2.GL_POLYGON);
 		gl.glEnable(GL2.GL_LIGHTING);
-		gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, luzAmbiente, 2);
-		//gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_DIFFUSE, luzDifusa , 2);
-		//gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_POSITION, posicaoLuz, 2 );
+		gl.glLightfv(GL2.GL_LIGHT0, GL2.GL_AMBIENT, luzAmbiente, 1);		
 		gl.glEnable(GL2.GL_COLOR_MATERIAL);
 		gl.glDisable(GL2.GL_POLYGON_OFFSET_FILL);
 	}
